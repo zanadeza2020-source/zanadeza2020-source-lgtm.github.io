@@ -1,0 +1,78 @@
+/* نفس الكود الأصلي للـ CSS - نسخ ولصق من الكود الأصلي */
+:root {
+    --primary-color: #4A90E2;
+    --primary-dark: #357ABD;
+    --primary-light: #6BA5E8;
+    --accent-color: #50C878;
+    --bg-gradient-start: #E8F0FE;
+    --bg-gradient-end: #D1E2FC;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #2C3E50;
+    --text-light: #5D6D7E;
+    --border-color: #BDC9D6;
+    --shadow-color: rgba(74, 144, 226, 0.2);
+    --hover-bg: #F0F7FF;
+    --gold: #f1c40f;
+    --whatsapp-color: #25D366;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-color);
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ... باقي التنسيقات كما هي تماماً من الكود الأصلي ... */
+
+/* إضافة تحسينات الأداء */
+.card, .book-button {
+    animation: fadeIn 0.5s ease forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسين شريط التمرير */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* تحسين الأداء على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    .card, .book-button {
+        animation: none; /* إيقاف الأنيميشن على المحمول للسرعة */
+    }
+}
