@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جامعة الأقصى - تمريض</title>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS Files (الترتيب مهم) -->
-    <link rel="stylesheet" href="themes.css">      <!-- المتغيرات أولاً -->
-    <link rel="stylesheet" href="style.css">       <!-- الأنماط الأساسية -->
-    <link rel="stylesheet" href="responsive.css">  <!-- أخيراً للتصميم المتجاوب -->
-</head>
-<body>
-    <div class="container">
-        <!-- البحث -->
-        <div class="search-container">
-            <input type="text" class="search-input" id="search" placeholder="🔍 ابحث عن مساق..." onkeyup="globalSearch(this.value)">
-        </div>
-        
-        <!-- المحتوى الرئيسي -->
-        <div id="main"></div>
-        
-        <!-- التوقيع -->
-        <div class="signature">
-            <i class="fas fa-code"></i>
-            <span class="engineer">مهندس</span>
-            <span class="nader">نادر</span>
-            <i class="fas fa-crown crown-icon"></i>
-            <i class="fas fa-heart" style="color: #e74c3c;"></i>
-        </div>
-    </div>
 
-    <!-- JavaScript Files (الترتيب مهم جداً) -->
-    <script src="courses-data.js"></script>   <!-- البيانات أولاً -->
-    <script src="security.js"></script>        <!-- الحماية -->
-    <script src="ui-components.js"></script>   <!-- المكونات -->
-    <script src="navigation.js"></script>       <!-- التنقل -->
-    <script src="app.js"></script>              <!-- التطبيق -->
-    <script src="main.js"></script>             <!-- التشغيل النهائي -->
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>جامعة الأقصى - تمريض</title>
+
+<!-- تحسين تحميل الخطوط -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS Files -->
+<link rel="stylesheet" href="themes.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="responsive.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- البحث -->
+<div class="search-container">
+<input
+type="text"
+class="search-input"
+id="search"
+placeholder="🔍 ابحث عن مساق..."
+onkeyup="globalSearch(this.value)">
+</div>
+
+<!-- المحتوى الرئيسي -->
+<div id="main"></div>
+
+<!-- التوقيع -->
+<div class="signature">
+<i class="fas fa-code"></i>
+<span class="engineer">مهندس</span>
+<span class="nader">نادر</span>
+<i class="fas fa-crown crown-icon"></i>
+<i class="fas fa-heart" style="color:#e74c3c;"></i>
+</div>
+
+</div>
+
+<!-- JavaScript Files -->
+<script src="courses-data.js" defer></script>
+<script src="security.js" defer></script>
+<script src="ui-components.js" defer></script>
+<script src="navigation.js" defer></script>
+<script src="app.js" defer></script>
+<script src="main.js" defer></script>
+
 </body>
 </html>
