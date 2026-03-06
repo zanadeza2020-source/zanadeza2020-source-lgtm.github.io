@@ -1,18 +1,20 @@
-/* themes.css - المتغيرات والثيمات */
+/* dark-theme.css - ثيم داكن للموقع */
 
 :root {
     --primary-color: #4A90E2;
-    --primary-dark: #357ABD;
-    --primary-light: #6BA5E8;
+    --primary-dark: #2C6AB1;
+    --primary-light: #5A9BE3;
     --accent-color: #50C878;
-    --bg-gradient-start: #E8F0FE;
-    --bg-gradient-end: #D1E2FC;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --text-color: #2C3E50;
-    --text-light: #5D6D7E;
-    --border-color: #BDC9D6;
-    --shadow-color: rgba(74, 144, 226, 0.2);
-    --hover-bg: #F0F7FF;
+
+    --bg-gradient-start: #1E1E2F;
+    --bg-gradient-end: #2C2C3E;
+    --card-bg: rgba(40, 40, 50, 0.95);
+    --text-color: #E0E0E0;
+    --text-light: #A0A0B0;
+    --border-color: #555566;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --hover-bg: rgba(60, 60, 70, 0.9);
+
     --gold: #f1c40f;
     --whatsapp-color: #25D366;
     --youtube-color: #FF0000;
@@ -20,17 +22,89 @@
     --danger-color: #e74c3c;
 }
 
-/* تنسيقات الألوان للأيقونات */
+/* تنسيقات أيقونات المنصات */
 .fab.fa-youtube {
     color: var(--youtube-color) !important;
-    filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.6));
 }
 
 .fab.fa-google-drive {
     color: var(--drive-color) !important;
-    filter: drop-shadow(0 2px 4px rgba(52, 168, 83, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(52, 168, 83, 0.6));
 }
 
 .fa-whatsapp {
     color: var(--whatsapp-color) !important;
+}
+
+/* تعديل الخلفيات الرئيسية */
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-color);
+}
+
+/* تعديل البطاقات */
+.card,
+.books-section,
+.search-section,
+.book-button,
+.item-card,
+.martyr-dedication {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.card:hover,
+.books-section:hover,
+.search-section:hover,
+.book-button:hover,
+.item-card:hover,
+.martyr-dedication:hover {
+    background: var(--hover-bg);
+}
+
+/* أزرار التحميل */
+.download-btn {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: white;
+}
+
+/* تبويبات */
+.tab {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.tab.active,
+.tab:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* رسائل الخطأ والنجاح */
+.error-message {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: rgba(231, 76, 60, 0.5);
+    color: var(--danger-color);
+}
+
+.success-message {
+    background: rgba(46, 204, 113, 0.2);
+    border-color: rgba(46, 204, 113, 0.5);
+    color: var(--success-color);
+}
+
+/* أزرار العودة */
+.back-button {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: white;
+}
+
+/* تحسينات عامة للنصوص الخفيفة */
+.text-light {
+    color: var(--text-light) !important;
 }
