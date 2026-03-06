@@ -1,5 +1,5 @@
 // main.js - نقطة الدخول الرئيسية للتطبيق
-// آخر تحديث: إضافة نظام البحث الشامل والمحسن
+// آخر تحديث: تحسين نظام البحث الشامل ومعالجة التمرير
 
 // متغير للتحكم في تأخير البحث
 let searchTimeout;
@@ -17,7 +17,7 @@ window.globalSearch = function(val) {
     }, 300);
 };
 
-// دالة تنفيذ البحث الفعلية
+// ========== دالة تنفيذ البحث الفعلية ==========
 function performSearch(val) {
     'use strict';
     
@@ -63,6 +63,7 @@ function performSearch(val) {
                         title: book.name,
                         link: book.link,
                         coming: book.coming || false,
+                        year: book.year,
                         match: `📚 كتاب: ${book.name}`
                     });
                 }
@@ -98,7 +99,9 @@ function performSearch(val) {
         { name: "ملخص المصطلحات الطبية", course: "med_terms" },
         { name: "ملخص العقيدة الإسلامية", course: "physiology" },
         { name: "ملخص اللغة العربية", course: "biochemistry" },
-        { name: "ملخص القضية الفلسطينية", course: "anatomy" }
+        { name: "ملخص القضية الفلسطينية", course: "anatomy" },
+        { name: "ملخص أساسيات التمريض", course: "nursing1" },
+        { name: "ملخص الأحياء الدقيقة", course: "microbio" }
     ];
 
     defaultSummaries.forEach(summary => {
@@ -120,11 +123,15 @@ function performSearch(val) {
         { name: "اختبار نهائي - الأحياء", course: "biology" },
         { name: "اختبار قصير 1 - الكيمياء", course: "chemistry" },
         { name: "اختبار منتصف الفصل - الكيمياء", course: "chemistry" },
+        { name: "اختبار نهائي - الكيمياء", course: "chemistry" },
         { name: "اختبار قصير 1 - الفيزياء", course: "physics" },
+        { name: "اختبار منتصف الفصل - الفيزياء", course: "physics" },
         { name: "اختبار عملي - التشريح", course: "anatomy" },
         { name: "اختبار نظري - التشريح", course: "anatomy" },
         { name: "اختبار شامل - المصطلحات الطبية", course: "med_terms" },
-        { name: "اختبار منتصف الفصل - العقيدة", course: "physiology" }
+        { name: "اختبار منتصف الفصل - العقيدة", course: "physiology" },
+        { name: "اختبار نهائي - اللغة العربية", course: "biochemistry" },
+        { name: "اختبار عملي - تمريض", course: "nursing_practical" }
     ];
 
     defaultExams.forEach(exam => {
@@ -139,6 +146,12 @@ function performSearch(val) {
         }
     });
 
+    // ترتيب النتائج حسب الصلة
+    booksResults.sort((a, b) => a.title.length - b.title.length);
+    lecturesResults.sort((a, b) => a.title.length - b.title.length);
+    summariesResults.sort((a, b) => a.title.length - b.title.length);
+    examsResults.sort((a, b) => a.title.length - b.title.length);
+
     // تجميع كل النتائج
     const totalResults = [
         ...results,
@@ -151,11 +164,29 @@ function performSearch(val) {
     // عرض النتائج
     let html = getBackButton(getDashboardLink()) + getWhatsAppLink();
     
+    // إضافة إحصائيات سريعة للبحث
+    const stats = {
+        courses: results.length,
+        books: booksResults.length,
+        lectures: lecturesResults.length,
+        summaries: summariesResults.length,
+        exams: examsResults.length
+    };
+    
     html += `
         <h2 class="course-title">
             <i class="fas fa-search"></i>
-            نتائج البحث عن "${val}" (${totalResults.length})
+            نتائج البحث عن "${val}"
         </h2>
+        
+        <!-- إحصائيات البحث -->
+        <div class="quick-stats">
+            ${stats.courses > 0 ? `<div class="stat-item"><i class="fas fa-university"></i> ${stats.courses} مساق</div>` : ''}
+            ${stats.books > 0 ? `<div class="stat-item"><i class="fas fa-book"></i> ${stats.books} كتاب</div>` : ''}
+            ${stats.lectures > 0 ? `<div class="stat-item"><i class="fas fa-video"></i> ${stats.lectures} محاضرة</div>` : ''}
+            ${stats.summaries > 0 ? `<div class="stat-item"><i class="fas fa-file-alt"></i> ${stats.summaries} ملخص</div>` : ''}
+            ${stats.exams > 0 ? `<div class="stat-item"><i class="fas fa-question-circle"></i> ${stats.exams} اختبار</div>` : ''}
+        </div>
     `;
 
     if (totalResults.length === 0) {
@@ -166,7 +197,7 @@ function performSearch(val) {
                 <p style="color: #95a5a6; font-size: 1.1rem;">جرب كلمات بحث أخرى</p>
                 <div style="margin-top: 20px; color: #bdc3c7; font-size: 0.9rem;">
                     <i class="fas fa-lightbulb"></i> 
-                    اقتراحات: أحياء، كيمياء، كتاب، محاضرة، اختبار
+                    اقتراحات: أحياء، كيمياء، كتاب، محاضرة، اختبار، ملخص
                 </div>
             </div>
         `;
@@ -221,11 +252,12 @@ function performSearch(val) {
             booksResults.forEach(result => {
                 if (result.coming) {
                     html += `
-                        <div class="item-card" onclick="alert('سيتم إضافة الرابط قريباً')" style="cursor: pointer;">
+                        <div class="item-card" onclick="showNotification('سيتم إضافة الرابط قريباً', 'info')" style="cursor: pointer;">
                             <i class="fas fa-book-open"></i>
                             <div class="item-info">
                                 <div class="item-title">${result.title}</div>
                                 <div class="item-course">من مساق: ${result.courseTitle}</div>
+                                ${result.year ? `<div class="item-year">سنة: ${result.year}</div>` : ''}
                             </div>
                             <div class="item-badge coming-soon">
                                 <i class="fas fa-clock"></i>
@@ -240,6 +272,7 @@ function performSearch(val) {
                             <div class="item-info">
                                 <div class="item-title">${result.title}</div>
                                 <div class="item-course">من مساق: ${result.courseTitle}</div>
+                                ${result.year ? `<div class="item-year">سنة: ${result.year}</div>` : ''}
                             </div>
                             <div class="item-badge download">
                                 <i class="fas fa-hand-pointer"></i>
@@ -267,6 +300,7 @@ function performSearch(val) {
             lecturesResults.forEach(result => {
                 const icon = result.lectureType === 'youtube' ? 'fa-youtube' : 'fa-google-drive';
                 const color = result.lectureType === 'youtube' ? '#FF0000' : '#34A853';
+                const platform = result.lectureType === 'youtube' ? 'يوتيوب' : 'جوجل درايف';
                 
                 html += `
                     <a href="${result.link}" class="item-card" target="_blank" rel="noopener noreferrer">
@@ -274,8 +308,9 @@ function performSearch(val) {
                         <div class="item-info">
                             <div class="item-title">${result.title}</div>
                             <div class="item-course">من مساق: ${result.courseTitle}</div>
+                            <div class="item-platform">منصة: ${platform}</div>
                         </div>
-                        <div class="item-badge watch">
+                        <div class="item-badge watch" style="background: ${color};">
                             <i class="fas fa-hand-pointer"></i>
                             مشاهدة
                         </div>
@@ -299,7 +334,7 @@ function performSearch(val) {
             
             summariesResults.forEach(result => {
                 html += `
-                    <div class="item-card" onclick="alert('سيتم إضافة الرابط قريباً')" style="cursor: pointer;">
+                    <div class="item-card" onclick="showNotification('سيتم إضافة الملخص قريباً', 'info')" style="cursor: pointer;">
                         <i class="fas fa-file-pdf"></i>
                         <div class="item-info">
                             <div class="item-title">${result.title}</div>
@@ -329,7 +364,7 @@ function performSearch(val) {
             
             examsResults.forEach(result => {
                 html += `
-                    <div class="item-card" onclick="alert('سيتم إضافة الرابط قريباً')" style="cursor: pointer;">
+                    <div class="item-card" onclick="showNotification('سيتم إضافة الاختبار قريباً', 'info')" style="cursor: pointer;">
                         <i class="fas fa-file-alt"></i>
                         <div class="item-info">
                             <div class="item-title">${result.title}</div>
@@ -354,12 +389,14 @@ function performSearch(val) {
 
 // ========== دالة إحصائيات الموقع ==========
 function getSiteStats() {
+    'use strict';
+    
     let totalBooks = 0;
     let totalLectures = 0;
     let totalCourses = Object.keys(courses).length;
     
     Object.keys(courses).forEach(key => {
-        totalBooks += courses[key].books?.length || 0;
+        totalBooks += courses[key].books?.filter(b => !b.coming).length || 0;
         totalLectures += courses[key].lectures?.length || 0;
     });
     
@@ -368,7 +405,7 @@ function getSiteStats() {
         books: totalBooks,
         lectures: totalLectures,
         summaries: 15, // تقريبي
-        exams: 12      // تقريبي
+        exams: 15      // تقريبي
     };
 }
 
@@ -376,18 +413,30 @@ function getSiteStats() {
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
+    // التمرير لأعلى الصفحة فوراً
+    window.scrollTo(0, 0);
+    
     // إضافة الـ CSS الإضافي
     addAdditionalStyles();
     
-    // إضافة مستمع حدث للبحث المباشر (اختياري)
+    // إضافة مستمع حدث للبحث المباشر
     setupSearchInput();
     
     // معالجة التحميل الأول
     handleInitialLoad();
+    
+    // إضافة مستمع لحدث popstate للتنقل الخلفي
+    window.addEventListener('popstate', function() {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    });
 });
 
 // ========== إعداد مدخل البحث ==========
 function setupSearchInput() {
+    'use strict';
+    
     const searchInput = document.getElementById('search');
     if (searchInput) {
         // إضافة زر مسح للبحث
@@ -401,11 +450,44 @@ function setupSearchInput() {
         // إضافة خصائص تحسينية
         searchInput.setAttribute('autocomplete', 'off');
         searchInput.setAttribute('spellcheck', 'false');
+        
+        // إضافة زر مسح
+        const searchContainer = searchInput.parentElement;
+        const clearButton = document.createElement('span');
+        clearButton.className = 'search-clear';
+        clearButton.innerHTML = '&times;';
+        clearButton.style.cssText = `
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+        `;
+        
+        clearButton.onclick = function() {
+            searchInput.value = '';
+            searchInput.focus();
+            showDashboard();
+            this.style.display = 'none';
+        };
+        
+        searchContainer.style.position = 'relative';
+        searchContainer.appendChild(clearButton);
+        
+        searchInput.addEventListener('input', function() {
+            clearButton.style.display = this.value.length > 0 ? 'block' : 'none';
+        });
     }
 }
 
 // ========== إضافة الـ CSS الإضافي ==========
 function addAdditionalStyles() {
+    'use strict';
+    
     const style = document.createElement('style');
     style.textContent = `
         /* تنسيقات البحث المحسنة */
@@ -423,6 +505,7 @@ function addAdditionalStyles() {
             border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease;
         }
         
         .search-section:hover {
@@ -470,6 +553,7 @@ function addAdditionalStyles() {
             margin: 10px 0 5px;
             color: var(--text-color);
             font-size: 1rem;
+            font-weight: 600;
         }
         
         .items-list {
@@ -486,14 +570,32 @@ function addAdditionalStyles() {
             border-radius: 15px;
             text-decoration: none;
             color: var(--text-color);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(74, 144, 226, 0.1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .item-card:hover::before {
+            opacity: 1;
         }
         
         .item-card:hover {
             background: white;
-            transform: translateX(-5px);
+            transform: translateX(-5px) translateY(-2px);
             box-shadow: 0 8px 20px var(--shadow-color);
             border-color: var(--primary-light);
         }
@@ -503,6 +605,11 @@ function addAdditionalStyles() {
             margin-left: 15px;
             min-width: 40px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .item-card:hover i {
+            transform: scale(1.1);
         }
         
         .item-info {
@@ -513,9 +620,12 @@ function addAdditionalStyles() {
             font-weight: 600;
             margin-bottom: 4px;
             color: var(--text-color);
+            font-size: 1rem;
         }
         
-        .item-course {
+        .item-course,
+        .item-platform,
+        .item-year {
             font-size: 0.8rem;
             color: var(--primary-color);
             opacity: 0.8;
@@ -531,10 +641,16 @@ function addAdditionalStyles() {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .item-card:hover .item-badge {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
         }
         
         .item-badge.download {
-            background: linear-gradient(135deg, #27ae60, #229954);
+            background: linear-gradient(135deg, var(--success-color), #229954);
         }
         
         .item-badge.watch {
@@ -557,9 +673,35 @@ function addAdditionalStyles() {
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
+            animation: fadeIn 0.5s ease;
         }
         
-        /* تنسيقات الشاشات الصغيرة */
+        /* تنسيق زر المسح */
+        .search-clear {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .search-clear:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--danger-color);
+        }
+        
+        /* تحسينات للشاشات الصغيرة */
         @media (max-width: 768px) {
             .courses-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -587,55 +729,25 @@ function addAdditionalStyles() {
             }
         }
         
-        /* تنسيقات للشاشات المتوسطة */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .courses-grid {
-                grid-template-columns: repeat(3, 1fr);
+        /* أنيميشن */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        /* تنسيق الشاشات الكبيرة */
-        @media (min-width: 1400px) {
-            .courses-grid {
-                grid-template-columns: repeat(4, 1fr);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-        }
-        
-        /* تحسين مظهر شريط البحث */
-        .search-container {
-            position: relative;
-        }
-        
-        .search-input {
-            padding-left: 40px !important;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234A90E2"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 20px;
-        }
-        
-        /* إحصائيات سريعة (اختياري) */
-        .quick-stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .stat-item i {
-            margin-left: 5px;
-            color: var(--primary-color);
+            to {
+                opacity: 1;
+            }
         }
     `;
     
@@ -645,6 +757,9 @@ function addAdditionalStyles() {
 // ========== معالجة التحميل الأول ==========
 function handleInitialLoad() {
     'use strict';
+    
+    // التمرير لأعلى الصفحة فوراً
+    window.scrollTo(0, 0);
     
     const hash = window.location.hash.substring(1);
     if (hash) {
@@ -673,9 +788,14 @@ function handleInitialLoad() {
     } else {
         showDashboard();
     }
+    
+    // التمرير مرة أخرى بعد تحميل المحتوى
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 150);
 }
 
 // ========== تصدير الدوال للاستخدام العام ==========
-// التأكد من توفر الدوال في النطاق العام
 window.getSiteStats = getSiteStats;
 window.performSearch = performSearch;
+window.setupSearchInput = setupSearchInput;
