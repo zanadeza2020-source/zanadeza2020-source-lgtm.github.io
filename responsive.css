@@ -1,0 +1,63 @@
+/* responsive.css - للشاشات المختلفة */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tab {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .book-button {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .click-here {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+    }
+    
+    .martyr-name {
+        font-size: 1.1rem;
+    }
+    
+    .whatsapp-link {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .signature {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* للشاشات الكبيرة */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
