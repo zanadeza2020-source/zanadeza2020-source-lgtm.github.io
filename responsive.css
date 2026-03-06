@@ -1,842 +1,244 @@
 /* responsive.css - تحسين التوافق مع جميع الأجهزة */
 /* آخر تحديث: دعم جميع أحجام الشاشات وتحسين تجربة المستخدم */
 
-/* ========== الشاشات الصغيرة جداً (موبايل صغير - أقل من 480px) ========== */
+/* ========================= الشاشات الصغيرة جداً (أقل من 480px) ========================= */
 @media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    
-    .container {
-        width: 100%;
-        padding: 0;
-    }
-    
-    /* تحسين البطاقات */
-    .grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px;
-    }
-    
-    .card {
-        padding: 15px;
-    }
-    
-    .card i {
-        font-size: 1.5rem !important;
-    }
-    
-    .card h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-    
-    .card .code {
-        font-size: 0.8rem;
-        padding: 4px 10px;
-    }
-    
-    /* تحسين العناوين */
-    .page-title {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-    
-    .page-title i {
-        font-size: 1.2rem !important;
-    }
-    
-    .course-title {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
-    
-    .course-title i {
-        font-size: 1.1rem !important;
-    }
-    
-    /* تحسين البحث */
-    .search-container {
-        margin-bottom: 15px;
-    }
-    
-    .search-input {
-        padding: 12px 20px;
-        padding-right: 45px;
-        font-size: 0.9rem;
-        background-size: 18px;
-        background-position: right 12px center;
-    }
-    
-    /* تحسين التبويبات */
-    .tabs {
-        gap: 5px;
-        margin-bottom: 15px;
-    }
-    
-    .tab {
-        padding: 8px 10px;
-        font-size: 0.8rem;
-        flex: 1;
-        text-align: center;
-    }
-    
-    .tab i {
-        font-size: 0.8rem !important;
-        margin-left: 3px;
-    }
-    
-    /* تحسين أزرار الكتب */
-    .book-button {
-        padding: 12px 15px;
-        margin-bottom: 10px;
-    }
-    
-    .book-button i {
-        font-size: 1.2rem !important;
-        margin-left: 10px;
-    }
-    
-    .book-button .click-here {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-    }
-    
-    /* تحسين محتوى البطاقات */
-    .content-card {
-        padding: 12px 15px;
-    }
-    
-    .content-info i {
-        font-size: 1.2rem !important;
-    }
-    
-    .content-info h4 {
-        font-size: 0.9rem;
-    }
-    
-    /* تحسين إهداء الشهيد */
-    .martyr-dedication {
-        padding: 10px 15px;
-        margin: 15px auto;
-    }
-    
-    .martyr-icon i {
-        font-size: 0.9rem !important;
-    }
-    
-    .martyr-title {
-        font-size: 0.85rem;
-    }
-    
-    .martyr-name {
-        font-size: 1rem;
-        padding: 2px 10px;
-    }
-    
-    .martyr-dua {
-        font-size: 0.75rem;
-    }
-    
-    /* تحسين الواتساب */
-    .whatsapp-link {
-        padding: 10px 12px;
-        margin-bottom: 10px;
-    }
-    
-    .whatsapp-link i {
-        font-size: 1.2rem !important;
-    }
-    
-    .whatsapp-text {
-        font-size: 0.85rem;
-    }
-    
-    .whatsapp-badge {
-        padding: 3px 8px;
-        font-size: 0.7rem;
-    }
-    
-    .whatsapp-badge i {
-        font-size: 0.7rem !important;
-    }
-    
-    /* تحسين التوقيع */
-    .signature {
-        font-size: 0.8rem;
-        gap: 5px;
-        margin-top: 30px;
-        flex-wrap: wrap;
-    }
-    
-    .signature i {
-        font-size: 0.8rem;
-    }
-    
-    /* تحسين نتائج البحث */
-    .search-section {
-        padding: 15px;
-    }
-    
-    .search-section .section-title {
-        font-size: 1rem;
-        margin-bottom: 12px;
-    }
-    
-    .search-section .section-title i {
-        font-size: 1rem !important;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 10px;
-    }
-    
-    .course-card {
-        padding: 10px;
-    }
-    
-    .course-card i {
-        font-size: 1.5rem !important;
-    }
-    
-    .course-card h4 {
-        font-size: 0.85rem;
-        margin: 5px 0;
-    }
-    
-    .course-card .code {
-        font-size: 0.7rem;
-        padding: 2px 6px;
-    }
-    
-    .item-card {
-        padding: 12px 12px;
-    }
-    
-    .item-card i {
-        font-size: 1.3rem !important;
-        margin-left: 8px;
-        min-width: 25px;
-    }
-    
-    .item-title {
-        font-size: 0.85rem;
-    }
-    
-    .item-course {
-        font-size: 0.65rem;
-    }
-    
-    .item-badge {
-        padding: 4px 8px;
-        font-size: 0.7rem;
-    }
-    
-    /* تحسين الإحصائيات */
-    .quick-stats {
-        gap: 8px;
-        margin: 10px 0;
-    }
-    
-    .stat-item {
-        padding: 5px 10px;
-        font-size: 0.75rem;
-    }
-    
-    .stat-item i {
-        font-size: 0.8rem;
-    }
-    
-    /* تحسين أزرار الرجوع */
-    .back-button {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
-    
-    .back-button i {
-        font-size: 0.8rem !important;
-    }
-    
-    /* تحسين رسائل الخطأ والنجاح */
-    .error-message,
-    .success-message {
-        padding: 15px;
-    }
-    
-    .error-message i,
-    .success-message i {
-        font-size: 1.5rem;
-    }
-    
-    /* تحسين شريط التقدم */
-    .progress-bar {
-        padding: 10px;
-    }
+    body { padding: 10px; }
+    .container { width: 100%; padding: 0; }
+
+    .grid { grid-template-columns: 1fr !important; gap: 12px; }
+    .card { padding: 15px; }
+    .card i { font-size: 1.5rem !important; }
+    .card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .card .code { font-size: 0.8rem; padding: 4px 10px; }
+
+    .page-title { font-size: 1.3rem; margin-bottom: 15px; }
+    .page-title i { font-size: 1.2rem !important; }
+    .course-title { font-size: 1.2rem; margin-bottom: 15px; }
+    .course-title i { font-size: 1.1rem !important; }
+
+    .search-container { margin-bottom: 15px; }
+    .search-input { padding: 12px 20px; padding-right: 45px; font-size: 0.9rem; background-size: 18px; background-position: right 12px center; }
+
+    .tabs { gap: 5px; margin-bottom: 15px; }
+    .tab { padding: 8px 10px; font-size: 0.8rem; flex: 1; text-align: center; }
+    .tab i { font-size: 0.8rem !important; margin-left: 3px; }
+
+    .book-button { padding: 12px 15px; margin-bottom: 10px; }
+    .book-button i { font-size: 1.2rem !important; margin-left: 10px; }
+    .book-button .click-here { padding: 4px 8px; font-size: 0.75rem; }
+
+    .content-card { padding: 12px 15px; }
+    .content-info i { font-size: 1.2rem !important; }
+    .content-info h4 { font-size: 0.9rem; }
+
+    .martyr-dedication { padding: 10px 15px; margin: 15px auto; }
+    .martyr-icon i { font-size: 0.9rem !important; }
+    .martyr-title { font-size: 0.85rem; }
+    .martyr-name { font-size: 1rem; padding: 2px 10px; }
+    .martyr-dua { font-size: 0.75rem; }
+
+    .whatsapp-link { padding: 10px 12px; margin-bottom: 10px; }
+    .whatsapp-link i { font-size: 1.2rem !important; }
+    .whatsapp-text { font-size: 0.85rem; }
+    .whatsapp-badge { padding: 3px 8px; font-size: 0.7rem; }
+    .whatsapp-badge i { font-size: 0.7rem !important; }
+
+    .signature { font-size: 0.8rem; gap: 5px; margin-top: 30px; flex-wrap: wrap; }
+    .signature i { font-size: 0.8rem; }
+
+    .search-section { padding: 15px; }
+    .search-section .section-title { font-size: 1rem; margin-bottom: 12px; }
+    .search-section .section-title i { font-size: 1rem !important; }
+
+    .courses-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+    .course-card { padding: 10px; }
+    .course-card i { font-size: 1.5rem !important; }
+    .course-card h4 { font-size: 0.85rem; margin: 5px 0; }
+    .course-card .code { font-size: 0.7rem; padding: 2px 6px; }
+
+    .item-card { padding: 12px; }
+    .item-card i { font-size: 1.3rem !important; margin-left: 8px; min-width: 25px; }
+    .item-title { font-size: 0.85rem; }
+    .item-course { font-size: 0.65rem; }
+    .item-badge { padding: 4px 8px; font-size: 0.7rem; }
+
+    .quick-stats { gap: 8px; margin: 10px 0; }
+    .stat-item { padding: 5px 10px; font-size: 0.75rem; }
+    .stat-item i { font-size: 0.8rem; }
+
+    .back-button { padding: 8px 20px; font-size: 0.9rem; margin-bottom: 15px; }
+    .back-button i { font-size: 0.8rem !important; }
+
+    .error-message, .success-message { padding: 15px; }
+    .error-message i, .success-message i { font-size: 1.5rem; }
+
+    .progress-bar { padding: 10px; }
 }
 
-/* ========== الشاشات الصغيرة (موبايل عادي - 481px إلى 600px) ========== */
+/* ========================= الشاشات الصغيرة (481px - 600px) ========================= */
 @media (min-width: 481px) and (max-width: 600px) {
-    body {
-        padding: 12px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .card {
-        padding: 15px;
-    }
-    
-    .tabs {
-        flex-wrap: wrap;
-    }
-    
-    .tab {
-        flex: 1 1 calc(50% - 5px);
-        min-width: auto;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .course-card {
-        padding: 12px;
-    }
+    body { padding: 12px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card { padding: 15px; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1 1 calc(50% - 5px); min-width: auto; }
+    .courses-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .course-card { padding: 12px; }
 }
 
-/* ========== الشاشات المتوسطة (تابت عمودي - 601px إلى 768px) ========== */
+/* ========================= الشاشات المتوسطة عمودي (601px - 768px) ========================= */
 @media (min-width: 601px) and (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .card {
-        padding: 18px;
-    }
-    
-    .tabs {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .tab {
-        flex: 1 1 auto;
-        min-width: 120px;
-        padding: 10px 15px;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .course-card {
-        padding: 15px;
-    }
+    body { padding: 15px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .card { padding: 18px; }
+    .tabs { flex-wrap: wrap; gap: 8px; }
+    .tab { flex: 1 1 auto; min-width: 120px; padding: 10px 15px; }
+    .courses-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .course-card { padding: 15px; }
 }
 
-/* ========== الشاشات المتوسطة (تابت أفقي - 769px إلى 1024px) ========== */
+/* ========================= الشاشات المتوسطة أفقي (769px - 1024px) ========================= */
 @media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        padding: 20px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-    }
-    
-    .card {
-        padding: 20px;
-    }
-    
-    .tabs {
-        gap: 10px;
-    }
-    
-    .tab {
-        padding: 10px 18px;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-    }
+    body { padding: 20px; }
+    .grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { padding: 20px; }
+    .tabs { gap: 10px; }
+    .tab { padding: 10px 18px; }
+    .courses-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
 }
 
-/* ========== الشاشات الكبيرة (لابتوب - 1025px إلى 1280px) ========== */
+/* ========================= الشاشات الكبيرة (1025px - 1280px) ========================= */
 @media (min-width: 1025px) and (max-width: 1280px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-    }
-    
-    .container {
-        max-width: 1100px;
-    }
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .courses-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .container { max-width: 1100px; }
 }
 
-/* ========== الشاشات الكبيرة جداً (شاشات عادية - 1281px إلى 1440px) ========== */
+/* ========================= الشاشات الكبيرة جداً (1281px - 1440px) ========================= */
 @media (min-width: 1281px) and (max-width: 1440px) {
-    .container {
-        max-width: 1200px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 22px;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
+    .container { max-width: 1200px; }
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .courses-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
 }
 
-/* ========== شاشات Ultra-wide (1441px إلى 1600px) ========== */
+/* ========================= Ultra-wide (1441px - 1600px) ========================= */
 @media (min-width: 1441px) and (max-width: 1600px) {
-    .container {
-        max-width: 1300px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 25px;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 22px;
-    }
+    .container { max-width: 1300px; }
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+    .courses-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
 }
 
-/* ========== شاشات Ultra-wide كبيرة (1601px إلى 1920px) ========== */
+/* ========================= Ultra-wide كبيرة (1601px - 1920px) ========================= */
 @media (min-width: 1601px) and (max-width: 1920px) {
-    .container {
-        max-width: 1400px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 25px;
-    }
-    
-    .card {
-        padding: 25px;
-    }
-    
-    .card i {
-        font-size: 2rem !important;
-    }
-    
-    .card h3 {
-        font-size: 1.2rem;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 22px;
-    }
+    .container { max-width: 1400px; }
+    .grid { grid-template-columns: repeat(5, 1fr); gap: 25px; }
+    .card { padding: 25px; }
+    .card i { font-size: 2rem !important; }
+    .card h3 { font-size: 1.2rem; }
+    .courses-grid { grid-template-columns: repeat(5, 1fr); gap: 22px; }
 }
 
-/* ========== شاشات 4K وأكبر (أكثر من 1920px) ========== */
+/* ========================= 4K وأكبر (>1920px) ========================= */
 @media (min-width: 1921px) {
-    .container {
-        max-width: 1600px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 30px;
-    }
-    
-    .card {
-        padding: 30px;
-    }
-    
-    .card i {
-        font-size: 2.2rem !important;
-    }
-    
-    .card h3 {
-        font-size: 1.3rem;
-    }
-    
-    .courses-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 25px;
-    }
-    
-    body {
-        font-size: 1.1rem;
-    }
+    .container { max-width: 1600px; }
+    .grid { grid-template-columns: repeat(6, 1fr); gap: 30px; }
+    .card { padding: 30px; }
+    .card i { font-size: 2.2rem !important; }
+    .card h3 { font-size: 1.3rem; }
+    .courses-grid { grid-template-columns: repeat(6, 1fr); gap: 25px; }
+    body { font-size: 1.1rem; }
 }
 
-/* ========== تحسينات اللمس للأجهزة اللوحية والموبايل ========== */
+/* ========================= تحسينات اللمس ========================= */
 @media (hover: none) and (pointer: coarse) {
-    /* تكبير مناطق اللمس */
-    .tab, 
-    .card, 
-    .book-button,
-    .item-card,
-    .back-button,
-    .download-btn,
-    .whatsapp-link {
-        min-height: 44px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(74, 144, 226, 0.2);
-    }
-    
-    /* إزالة تأثيرات الـ hover التي تسبب مشاكل */
-    .card:hover,
-    .book-button:hover,
-    .item-card:hover,
-    .tab:hover {
-        transform: none;
-        box-shadow: 0 8px 20px var(--shadow-color);
-    }
-    
-    /* إضافة تأثيرات نشطة بدلاً من hover */
-    .card:active,
-    .book-button:active,
-    .item-card:active,
-    .tab:active {
-        opacity: 0.8;
-        transform: scale(0.98);
-        transition: all 0.1s ease;
-    }
-    
-    /* تحسين التمرير */
-    .tabs {
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: 5px;
-    }
-    
-    .tabs::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .tab {
-        white-space: nowrap;
-    }
+    .tab, .card, .book-button, .item-card, .back-button, .download-btn, .whatsapp-link { min-height: 44px; cursor: pointer; -webkit-tap-highlight-color: rgba(74,144,226,0.2); }
+    .card:hover, .book-button:hover, .item-card:hover, .tab:hover { transform: none; box-shadow: 0 8px 20px var(--shadow-color); }
+    .card:active, .book-button:active, .item-card:active, .tab:active { opacity:0.8; transform:scale(0.98); transition: all 0.1s ease; }
+    .tabs { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; scrollbar-width:none; padding-bottom:5px; }
+    .tabs::-webkit-scrollbar { display:none; }
+    .tab { white-space: nowrap; }
 }
 
-/* ========== تحسينات للوضع الأفقي على الموبايل ========== */
+/* ========================= تحسين الوضع الأفقي على الموبايل ========================= */
 @media (max-width: 896px) and (orientation: landscape) {
-    body {
-        padding: 10px;
-    }
-    
-    .grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-    
-    .card {
-        padding: 12px;
-    }
-    
-    .card i {
-        font-size: 1.2rem !important;
-        margin-bottom: 8px;
-    }
-    
-    .card h3 {
-        font-size: 0.9rem;
-        margin-bottom: 5px;
-    }
-    
-    .card .code {
-        font-size: 0.7rem;
-        padding: 3px 8px;
-    }
-    
-    .search-container {
-        margin-bottom: 12px;
-    }
-    
-    .search-input {
-        padding: 10px 18px;
-        padding-right: 40px;
-        font-size: 0.85rem;
-    }
-    
-    .martyr-dedication {
-        margin: 10px auto;
-        padding: 8px 12px;
-    }
-    
-    .martyr-icon i {
-        font-size: 0.8rem !important;
-    }
-    
-    .martyr-title {
-        font-size: 0.8rem;
-    }
-    
-    .martyr-name {
-        font-size: 0.9rem;
-        padding: 2px 8px;
-    }
-    
-    .martyr-dua {
-        font-size: 0.7rem;
-    }
-    
-    .tabs {
-        margin-bottom: 12px;
-    }
-    
-    .tab {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-    }
-    
-    .quick-stats {
-        margin: 8px 0;
-    }
-    
-    .stat-item {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
+    body { padding:10px; }
+    .grid { grid-template-columns: repeat(3,1fr); gap:10px; }
+    .card { padding:12px; }
+    .card i { font-size:1.2rem !important; margin-bottom:8px; }
+    .card h3 { font-size:0.9rem; margin-bottom:5px; }
+    .card .code { font-size:0.7rem; padding:3px 8px; }
+    .search-container { margin-bottom:12px; }
+    .search-input { padding:10px 18px; padding-right:40px; font-size:0.85rem; }
 }
 
-/* ========== تحسينات للشاشات الصغيرة جداً جداً (أقل من 320px) ========== */
+/* ========================= الشاشات الصغيرة جداً جداً (<320px) ========================= */
 @media (max-width: 320px) {
-    body {
-        padding: 5px;
-    }
-    
-    .grid {
-        grid-template-columns: 1fr !important;
-        gap: 8px;
-    }
-    
-    .card {
-        padding: 10px;
-    }
-    
-    .card i {
-        font-size: 1.2rem !important;
-        margin-bottom: 5px;
-    }
-    
-    .card h3 {
-        font-size: 0.85rem;
-    }
-    
-    .code {
-        font-size: 0.65rem;
-        padding: 3px 6px;
-    }
-    
-    .tab {
-        padding: 6px 8px;
-        font-size: 0.7rem;
-    }
-    
-    .book-button {
-        padding: 10px 12px;
-    }
-    
-    .book-button i {
-        font-size: 1rem !important;
-        margin-left: 8px;
-    }
-    
-    .click-here {
-        padding: 3px 6px;
-        font-size: 0.65rem;
-    }
-    
-    .page-title {
-        font-size: 1.1rem;
-    }
-    
-    .course-title {
-        font-size: 1rem;
-    }
-    
-    .signature {
-        font-size: 0.7rem;
-    }
+    body { padding:5px; }
+    .grid { grid-template-columns:1fr !important; gap:8px; }
+    .card { padding:10px; }
+    .card i { font-size:1.2rem !important; margin-bottom:5px; }
+    .card h3 { font-size:0.85rem; }
+    .code { font-size:0.65rem; padding:3px 6px; }
+    .tab { padding:6px 8px; font-size:0.7rem; }
+    .book-button { padding:10px 12px; }
+    .book-button i { font-size:1rem !important; margin-left:8px; }
+    .click-here { padding:3px 6px; font-size:0.65rem; }
+    .page-title { font-size:1.1rem; }
+    .course-title { font-size:1rem; }
+    .signature { font-size:0.7rem; }
 }
 
-/* ========== دعم الشاشات ذات الكثافة العالية (Retina) ========== */
+/* ========================= دعم Retina ========================= */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    /* تحسين وضوح الخطوط */
-    body {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-    }
-    
-    /* تحسين وضوح الأيقونات */
-    .fas, .fab {
-        font-weight: 400;
-    }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+    .fas, .fab { font-weight: 400; }
 }
 
-/* ========== دعم الوضع الداكن (Dark Mode) ========== */
+/* ========================= الوضع الداكن ========================= */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-gradient-start: #1a2634;
-        --bg-gradient-end: #2c3e50;
-        --card-bg: rgba(45, 55, 72, 0.95);
-        --text-color: #ecf0f1;
-        --text-light: #bdc3c7;
-        --border-color: #4a5568;
-        --hover-bg: #2d3748;
+        --bg-gradient-start:#1a2634; --bg-gradient-end:#2c3e50;
+        --card-bg:rgba(45,55,72,0.95);
+        --text-color:#ecf0f1; --text-light:#bdc3c7;
+        --border-color:#4a5568; --hover-bg:#2d3748;
     }
-    
-    .card {
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .search-input {
-        background-color: var(--card-bg);
-        color: var(--text-color);
-        border-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .martyr-dedication {
-        border-color: rgba(255, 255, 255, 0.1);
-    }
+    .card { border-color:rgba(255,255,255,0.1); }
+    .search-input { background-color:var(--card-bg); color:var(--text-color); border-color:rgba(255,255,255,0.1); }
+    .martyr-dedication { border-color: rgba(255,255,255,0.1); }
 }
 
-/* ========== تحسينات للطباعة ========== */
+/* ========================= تحسينات الطباعة ========================= */
 @media print {
-    /* إخفاء العناصر غير المرغوب فيها */
-    .no-print,
-    .search-container,
-    .whatsapp-link,
-    .back-button,
-    .tabs,
-    .signature,
-    .quick-stats,
-    .martyr-dedication {
-        display: none !important;
-    }
-    
-    /* تحسينات للطباعة */
-    body {
-        background: white;
-        padding: 0.5cm;
-        color: black;
-    }
-    
-    .container {
-        max-width: 100%;
-    }
-    
-    .card {
-        break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-        background: white;
-        page-break-inside: avoid;
-    }
-    
-    .grid {
-        display: block;
-    }
-    
-    .card-link {
-        display: block;
-        margin-bottom: 10px;
-    }
-    
-    .code {
-        border-color: #ddd;
-        color: #333;
-    }
-    
-    /* تحسين توزيع الصفحات */
-    h1, h2, h3 {
-        page-break-after: avoid;
-    }
-    
-    img, svg {
-        page-break-inside: avoid;
-    }
+    .no-print, .search-container, .whatsapp-link, .back-button, .tabs, .signature, .quick-stats, .martyr-dedication { display:none !important; }
+    body { background:white; padding:0.5cm; color:black; }
+    .container { max-width:100%; }
+    .card { break-inside:avoid; box-shadow:none; border:1px solid #ddd; background:white; page-break-inside:avoid; }
+    .grid { display:block; }
+    .card-link { display:block; margin-bottom:10px; }
+    .code { border-color:#ddd; color:#333; }
+    h1,h2,h3 { page-break-after:avoid; }
+    img,svg { page-break-inside:avoid; }
 }
 
-/* ========== تحسينات إضافية ========== */
+/* ========================= تحسينات إضافية ========================= */
+.tab, .card, .book-button, .item-card { user-select:none; -webkit-user-select:none; }
 
-/* منع التحديد على العناصر التفاعلية (اختياري) */
-.tab, 
-.card, 
-.book-button,
-.item-card {
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* تحسين شريط التمرير */
 @media (min-width: 768px) {
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: var(--bg-gradient-end);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: var(--primary-dark);
-    }
+    ::-webkit-scrollbar { width:10px; height:10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-gradient-end); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius:5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
 }
 
-/* تحسين الأداء */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+    * { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
 }
 
-/* تحسين لمسافة الأمان للشاشات الحديثة */
-@supports (padding: max(0px)) {
-    body {
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
-        padding-top: max(20px, env(safe-area-inset-top));
-        padding-bottom: max(20px, env(safe-area-inset-bottom));
-    }
+@supports (padding:max(0px)) {
+    body { padding-left:max(20px, env(safe-area-inset-left)); padding-right:max(20px, env(safe-area-inset-right)); padding-top:max(20px, env(safe-area-inset-top)); padding-bottom:max(20px, env(safe-area-inset-bottom)); }
 }
 
-/* تحسين للشاشات المقوسة */
 @media (display-mode: fullscreen) {
-    .container {
-        max-width: 100%;
-        padding: 0 40px;
-    }
+    .container { max-width:100%; padding:0 40px; }
 }
