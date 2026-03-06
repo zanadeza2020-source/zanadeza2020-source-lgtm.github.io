@@ -1,0 +1,36 @@
+/* themes.css - المتغيرات والثيمات */
+
+:root {
+    --primary-color: #4A90E2;
+    --primary-dark: #357ABD;
+    --primary-light: #6BA5E8;
+    --accent-color: #50C878;
+    --bg-gradient-start: #E8F0FE;
+    --bg-gradient-end: #D1E2FC;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #2C3E50;
+    --text-light: #5D6D7E;
+    --border-color: #BDC9D6;
+    --shadow-color: rgba(74, 144, 226, 0.2);
+    --hover-bg: #F0F7FF;
+    --gold: #f1c40f;
+    --whatsapp-color: #25D366;
+    --youtube-color: #FF0000;
+    --drive-color: #34A853;
+    --danger-color: #e74c3c;
+}
+
+/* تنسيقات الألوان للأيقونات */
+.fab.fa-youtube {
+    color: var(--youtube-color) !important;
+    filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.2));
+}
+
+.fab.fa-google-drive {
+    color: var(--drive-color) !important;
+    filter: drop-shadow(0 2px 4px rgba(52, 168, 83, 0.2));
+}
+
+.fa-whatsapp {
+    color: var(--whatsapp-color) !important;
+}
