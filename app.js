@@ -1,5 +1,5 @@
 // app.js - منطق التطبيق الرئيسي
-// آخر تحديث: إصلاح مشكلة التمرير وتحسين الأداء
+// آخر تحديث: تحسين نظام البحث والعرض
 
 // ========== دالة التمرير لأعلى وتحديث المحتوى ==========
 function animatePage(html) {
@@ -10,27 +10,14 @@ function animatePage(html) {
         mainElement.innerHTML = html;
     }
     
-    // التمرير لأعلى الصفحة بشكل فوري وليس smooth
+    // التمرير لأعلى الصفحة عند تغيير الصفحة
     window.scrollTo({
         top: 0,
-        left: 0,
-        behavior: 'auto' // تغيير من smooth إلى auto للحصول على تمرير فوري
+        behavior: 'smooth'
     });
-    
-    // التأكد من التمرير مرة أخرى بعد تحميل المحتوى
-    setTimeout(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'auto'
-        });
-    }, 50);
     
     // إعادة تفعيل أي سكريبتات ديناميكية إذا لزم الأمر
     executeScripts();
-    
-    // تحديث حالة الأزرار النشطة
-    updateActiveStates();
 }
 
 // ========== تنفيذ السكريبتات داخل HTML ==========
@@ -46,26 +33,6 @@ function executeScripts() {
         newScript.appendChild(document.createTextNode(oldScript.innerHTML));
         oldScript.parentNode.replaceChild(newScript, oldScript);
     });
-}
-
-// ========== تحديث حالة الأزرار النشطة ==========
-function updateActiveStates() {
-    'use strict';
-    
-    // تحديث التبويبات النشطة
-    const currentHash = window.location.hash.substring(1);
-    if (currentHash.startsWith('course-')) {
-        const parts = currentHash.split('-');
-        const activeTab = parts[2] || 'books';
-        
-        document.querySelectorAll('.tab').forEach(tab => {
-            if (tab.getAttribute('href')?.includes(activeTab)) {
-                tab.classList.add('active');
-            } else {
-                tab.classList.remove('active');
-            }
-        });
-    }
 }
 
 // ========== عرض لوحة التحكم الرئيسية ==========
@@ -231,11 +198,7 @@ function showCourse(key, tab) {
     `;
 
     animatePage(html);
-    
-    // تحميل محتوى التبويب بعد animation
-    setTimeout(() => {
-        loadTabContent(key, tab);
-    }, 100);
+    loadTabContent(key, tab);
 }
 
 // ========== تحميل محتوى التبويب ==========
@@ -414,7 +377,6 @@ window.showSemester = showSemester;
 window.showCourse = showCourse;
 window.loadTabContent = loadTabContent;
 window.animatePage = animatePage;
-window.updateActiveStates = updateActiveStates;
 
 // ========== دوال مساعدة إضافية ==========
 
